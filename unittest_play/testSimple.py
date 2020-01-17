@@ -1,3 +1,7 @@
+"""
+执行本脚本命令行:
+python -m unittest  unittest_play.testSimple -v
+"""
 import unittest
 
 class TestStringMethods(unittest.TestCase):
@@ -50,7 +54,7 @@ class TestStringMethods(unittest.TestCase):
     #             self.assertEqual(i % 2, 0)
 
 
-    # @unittest.expectedFailure #预期失败
+    @unittest.expectedFailure #预期失败
     def test_assertCountEqual(self):
         self.longMessage=True
         self.assertCountEqual('abc','bcd',"元素个数不同") # 这里a和d两个字母个数不同
@@ -58,6 +62,11 @@ class TestStringMethods(unittest.TestCase):
     @unittest.expectedFailure
     def test_mast_fail(self):
         self.fail(msg="肯定失败")
+
+    # 预期抛出指定异常
+    def test_assert_excetprion(self):
+        with self.assertRaises(ImportError) as cm:
+            raise ImportError
 
 if __name__ == '__main__':
     unittest.main()
